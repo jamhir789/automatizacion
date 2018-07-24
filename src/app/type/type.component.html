@@ -1,0 +1,91 @@
+<div class="container">
+	<div class="row">
+			<div class="col-sm-9">
+					Inserte el NameSpace:	<input type="text" #inputNamespace  (change)="inputNameSpaceEmpty(inputNamespace)"/>
+			</div>
+			<div class="col-sm-3">
+				<button class="btn btn-info" (click)="getCurrentNamespace(inputNamespace)" [disabled]='isDisabeled' >Insertar nameSpace!</button>
+
+		</div>
+	</div>
+</div>
+
+<hr>
+<!-- para sacar el "obj de js" que esta dentro del form, se tiene que usar la directiva
+de ngForm, pero dentro de la referencia local-->
+<form class="form-group" (ngSubmit)="createSimpleTypeList(f)" #f="ngForm" >
+
+	<hr>
+
+	<div  class="container table-bordered " *ngFor="let type of namesList;let i =index">
+
+		<div class="row">
+			<div class="col-sm-3 col-md-3 col-lg-4">
+				Inserte el Valor:
+				<br>
+				<input type="text" (ngModel)="type.name" name="nameType{{i}}" />
+			</div>
+
+			<div class="col-sm-2 col-md-3 col-lg-4">
+				Inserte minimo:
+				<br>
+				<input type="number"  (ngModel)="type.min" name="min{{i}}"/>
+			</div>
+			<div class="col-sm-2 col-md-2 col-lg-3">
+				Inserte maximo:
+				<br>
+				<input type="number"  (ngModel)="type.max" name="max{{i}}"/>
+			</div>
+			<div class="col-sm-1 col-md-1 col-lg-1">
+				<div class="col-sm-6">
+					Numero: <input type="checkbox" (ngModel)='type.number'	name="number{{i}}">
+					Fecha: <input type="checkbox" (ngModel)='type.date'	name="date{{i}}"  [checked]="isDate" >
+				</div>
+
+			</div>
+
+		</div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+		<div class="col-sm-13" >
+			<button class="btn btn-warning flex "> Agregar campo</button>
+		</div>
+			</div>
+				</div>
+
+	<hr>
+
+
+	<div class="container">
+		<div class="row">
+
+
+			<div class="col-sm-13 " >
+				<button class="btn btn-success " (click)='displayCompleteJson()' >Mostrar XSD SimpleType!</button>
+
+       <button class="btn btn-success" (click)='saveTextAsFile()' >Guardar Archivo</button>
+		</div>
+
+
+		</div>
+	</div>
+
+</form>
+
+	<div class="container">
+		<div class="row">
+			<textarea id="inputTextToSave" style="width:412px;height:256px" >
+
+				 {{jsonSchema}}
+
+			 </textarea>
+
+		</div>
+	</div>
+
+	<br>
+	<br>
+	<hr>
+	<br>

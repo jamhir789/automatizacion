@@ -1,0 +1,12 @@
+<app-nvbar></app-nvbar>
+
+
+
+<app-header></app-header>
+<hr>
+
+<app-type (typeList)='addNewType($event)' (sharedNameSpace)='addSharedNameSpace($event)'></app-type>
+<app-xsd [currentType]='passToXsd()' [nameSpace]='passToEverything()'  (messageName)='addNewMessage($event)'></app-xsd>
+<app-wsdl [nameSpace]='passToEverything()'  [currentMessageName]='passToWsdl()'></app-wsdl>
+
+<app-footer> </app-footer>

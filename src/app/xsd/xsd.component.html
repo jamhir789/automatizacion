@@ -1,0 +1,109 @@
+
+
+<header class="text-center">
+	<h2>Creacion de XSD</h2>
+</header>
+<hr>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-3">
+			Inserte el Nombre de la operacion:	<input type="text" #inputOpName (change)="inputOperationNameEmpty(inputOpName)" />
+		</div>
+		<div class="col-sm-3">
+			<button class="btn btn-info"  (click)="getCurrentOperationName(inputOpName)" [disabled]="isDisabeled"  >Insertar Nombre! </button>
+
+		</div>
+		<div class="col-sm-3">
+
+			<button class="btn btn-primary" (click)="commitElements()">Agregar Elementos </button>
+		</div>
+		<div class="col-sm-3">
+			Esta insertando dentro de :
+			<h3>{{serviceName}}!</h3>
+		</div>
+	</div>
+</div>
+
+<hr>
+<!-- para sacar el "obj de js" que esta dentro del form, se tiene que usar la directiva
+de ngForm, pero dentro de la referencia local-->
+<form class="form-group" (ngSubmit)="buildComplexType(f)" #f="ngForm">
+	<div class="container"  >
+		<div class="row">
+
+			<div class="col-sm-6" >
+				<button class="btn btn-warning flex"  >Construir Json!</button>
+			</div>
+
+		</div>
+	</div>
+	<hr>
+
+	<div class="container table-bordered" *ngFor="let xsd of objElement;let i =index">
+		<div class="row">
+
+
+			<div class="col-sm-3">
+				Inserte el nombre del parametro:
+				<input type="text"  (ngModel)="xsd.paramName" name="paramName{{i}}"  />
+			</div>
+
+			<div class="col-sm-3">
+				Inserte el tipo:
+				<br>
+					<select type="text"  (ngModel)="xsd.type" name="type{{i}}" >
+						<option *ngFor="let item of typeArray" >{{item}}</option>
+					</select>
+				</div>
+
+
+			<div class="col-sm-3">
+				Inserte minimo ocurrencias:
+				<input type="number"  (ngModel)="xsd.maxOccurs"  name="min{{i}}"  />
+			</div>
+
+			<div class="col-sm-3">
+				Inserte maximo ocurrencias:
+				<input type="number"  (ngModel)="xsd.minOccurs" name="max{{i}}"  />
+			</div>
+		</div>
+		<hr>
+			<div class="row">
+				<div class="col-sm-6">Inserte la descripcion del parametro:</div>
+				<div class="col-sm-6">
+
+					<textarea rows="4" cols="50" type="text"  (ngModel)="xsd.documentation" name="documentation{{i}}" ></textarea>
+				</div>
+			</div>
+		<br>
+	</div>
+</form>
+<hr>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-offset-12" >
+				<button class="btn btn-success" (click)='displayCompleteJson()' > Mostrar Xsd!</button>
+        <button class="btn btn-success" (click)='saveTextAsFile()'>Guardar Archivo</button>
+
+			</div>
+
+		</div>
+	</div>
+
+	<hr>
+
+	<div class="container">
+		<div class="row">
+			<textarea id="inputTextToSave" style="width:412px;height:256px" >
+
+				 {{jsonSchema}}
+
+			 </textarea>
+
+		</div>
+	</div>
+<hr>
+		<br>
+		<br>
+		<br>
