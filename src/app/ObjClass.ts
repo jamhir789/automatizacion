@@ -3,7 +3,7 @@ export class objClass{
   public objSimpleType:
   [{
     "_attributes":{'name':string},
-    'xsd:restriction':{"_attributes":{ 
+    'xsd:restriction':{"_attributes":{
       'base':string}
     },
         'xsd:minLength':{"_attributes":{
@@ -22,14 +22,23 @@ export class objClass{
         'base':string
       }
     }
-      
+
   }];
+
+  public   objSimpleTypeBooleano:[{
+       "_attributes":{'name':string},
+       'xsd:restriction':{"_attributes":{
+         'base':string
+       }
+     }
+
+   }];
 
 
 public    objSimpleTypeNumber:
   [{
     "_attributes":{'name':string},
-    'xsd:restriction':{"_attributes":{ 
+    'xsd:restriction':{"_attributes":{
       'base':string}},
         'xsd:minInclusive':{"_attributes":{
           'value':number  },
@@ -43,7 +52,7 @@ public    objSimpleTypeNumber:
 public objComplexType:[{
       "_attributes":{"name":string},
         "xsd:sequence":{
-          "xsd:element":[{"_attributes":{ 
+          "xsd:element":[{"_attributes":{
       "maxOccurs":number,
       "minOccurs":number,
       "name":string,
@@ -64,7 +73,7 @@ public objComplexType:[{
       'type':string}
     }];
 
-     public objElement :[{"_attributes":{ 
+     public objElement :[{"_attributes":{
       "maxOccurs":number,
       "minOccurs":number,
       "name":string,
@@ -77,20 +86,20 @@ public objComplexType:[{
 
 
     public  objPortFather:
-            {"_attributes":{ 
+            {"_attributes":{
                     'name':string},
                     'wsdl:operation':
                     [{"_attributes":{
                     'name':string},
-                    'wsdl:input':{"_attributes":{ 
+                    'wsdl:input':{"_attributes":{
                         'name':string,
                         'message':string
                     }},
-                    'wsdl:output':{"_attributes":{ 
+                    'wsdl:output':{"_attributes":{
                         'name':string,
                         'message':string}
                     },
-                    'wsdl:fault':{"_attributes":{ 
+                    'wsdl:fault':{"_attributes":{
                         'name':string,
                         'message':string
                     }
@@ -102,15 +111,15 @@ public objComplexType:[{
     public objPortType:
         [{"_attributes":{
                     'name':string},
-                    'wsdl:input':{"_attributes":{ 
+                    'wsdl:input':{"_attributes":{
                         'name':string,
                         'message':string
                     }},
-                    'wsdl:output':{"_attributes":{ 
+                    'wsdl:output':{"_attributes":{
                         'name':string,
                         'message':string}
                     },
-                    'wsdl:fault':{"_attributes":{ 
+                    'wsdl:fault':{"_attributes":{
                         'name':string,
                         'message':string
                     }
@@ -120,17 +129,17 @@ public objComplexType:[{
 
 
       public objPart:
-                [{"_attributes":{ 
+                [{"_attributes":{
                     'element':string,
                     'name':string
                   }
                 }];
 
-       public objMessages: 
-                [{"_attributes":{ 
+       public objMessages:
+                [{"_attributes":{
                     'name':string},
                     'wsdl:part':
-                      [{"_attributes":{ 
+                      [{"_attributes":{
                         'element':string,
                         'name':string}
                     }],
@@ -138,16 +147,16 @@ public objComplexType:[{
 
 
        public objBindingFather:
-              {"_attributes":{  
+              {"_attributes":{
                 'name':string,
                 'type':string}
-                'soap:binding':{"_attributes":{ 
+                'soap:binding':{"_attributes":{
                     'style':string,
                     'transport': string}
                 }
-                "wsdl:operation":   [{"_attributes":{ 
+                "wsdl:operation":   [{"_attributes":{
           "name": string},
-          "wsdl:input": {"_attributes":{ 
+          "wsdl:input": {"_attributes":{
             "name":string
           },
             "soap:body":{"_attributes":{
@@ -162,7 +171,7 @@ public objComplexType:[{
              }
            }
           },
-          "wsdl:output": {"_attributes":{ 
+          "wsdl:output": {"_attributes":{
             "name": string
             },
              "soap:body":{"_attributes":{
@@ -177,9 +186,9 @@ public objComplexType:[{
              }
            }
           },
-          "wsdl:fault": {"_attributes":{ 
+          "wsdl:fault": {"_attributes":{
             "name": string},
-            "soap:fault": {"_attributes": { 
+            "soap:fault": {"_attributes": {
               "name": string,
               "use":string
             },
@@ -187,14 +196,14 @@ public objComplexType:[{
         }
       }]
     }
-          
-        
+
+
 
 
           public objBinding:
-       [{"_attributes":{ 
+       [{"_attributes":{
           "name": string},
-          "wsdl:input": {"_attributes":{ 
+          "wsdl:input": {"_attributes":{
             "name":string
           },
             "soap:body":{"_attributes":{
@@ -209,7 +218,7 @@ public objComplexType:[{
              }
            }
           },
-          "wsdl:output": {"_attributes":{ 
+          "wsdl:output": {"_attributes":{
             "name": string
             },
              "soap:body":{"_attributes":{
@@ -224,9 +233,9 @@ public objComplexType:[{
              }
            }
           },
-          "wsdl:fault": {"_attributes":{ 
+          "wsdl:fault": {"_attributes":{
             "name": string},
-            "soap:fault": {"_attributes": { 
+            "soap:fault": {"_attributes": {
               "name": string,
               "use":string
             },
@@ -234,7 +243,7 @@ public objComplexType:[{
         }
       }]
 
-             public objImport:[{  "_attributes":{ 
+             public objImport:[{  "_attributes":{
                     'namespace':string
                     'schemeLocation':string
                   },

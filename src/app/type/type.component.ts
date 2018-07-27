@@ -1,8 +1,12 @@
 import { Component, OnInit,Output,EventEmitter,ElementRef,OnChanges } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import {objClass} from '../ObjClass';
+
 import * as convert from 'xml-js';
-import {xmldom} from 'xmldom';
+/* import * as jQuery from 'jquery';
+import { $ } from 'protractor';*/
+
+
 
 
 
@@ -22,6 +26,7 @@ export class TypeComponent implements OnInit {
 	namesList:[string]=['--'];
 	isDisabeled:boolean=true;
 	isDate:boolean=false;
+  isBo:boolean=false;
 	hasValue:string;
 	@Output() typeList:EventEmitter<string> = new EventEmitter<string>();
 
@@ -43,6 +48,16 @@ export class TypeComponent implements OnInit {
   }]
 
 	objSimpleTypeDate:objClass['objSimpleTypeDate']=[{
+      "_attributes":{'name':'default'},
+      'xsd:restriction':{"_attributes":{
+        'base':'default'
+      }
+    }
+
+  }]
+
+
+  objSimpleTypeBooleano:objClass['objSimpleTypeBooleano']=[{
       "_attributes":{'name':'default'},
       'xsd:restriction':{"_attributes":{
         'base':'default'
@@ -93,18 +108,33 @@ export class TypeComponent implements OnInit {
 
 	}
 
-	createSimpleTypeList(form:NgForm){
+  createSimpleTypeList(form:NgForm){
+
+
 
 			if(!form.untouched){
 
+
+        if(form.value['boolean'+this.i]){
+           this.objSimpleType.push({
+            "_attributes":{'name': "Bandera"},
+                'xsd:restriction':{"_attributes":{
+                   'base':'xsd:boolean'
+                                      }
+                                         }
+                                          });
+                            this.namesList.push('Bandera');
+
+                                 }
+else{
 
 
 			if(!form.value['date'+this.i]){
 
 				if(form.value['number'+this.i]){
 
-
-					this.objSimpleTypeNumber.push({
+	         //this.objSimpleTypeNumber
+					this.objSimpleType.push({
 						"_attributes":{'name': "NumeroDG" +form.value['nameType' + this.i]},
 						'xsd:restriction':{"_attributes":{
 						'base':'xsd:integer'}},
@@ -134,30 +164,38 @@ export class TypeComponent implements OnInit {
 							}
 						}
 					})
-					this.namesList.push("this:CademaLG"+form.value['nameType'+this.i]);
+					this.namesList.push("this:CadenaLG"+form.value['nameType'+this.i]);
 				}
 				else{
+          this.objSimpleType.push({
+          "_attributes":{'name': "CadenaLG"+form.value['nameType'+ this.i]+'O'},
+          'xsd:restriction':{"_attributes":{
+          'base':'xsd:string'}},
+          'xsd:minLength':{"_attributes":{
+            'value':form.value['min' + this.i]
+            },
+          },
+          'xsd:maxLenght':{"_attributes":{
+            'value':form.value['max' + this.i]
+            }
+          }
+        });
+          this.namesList.push("this:CadenaLG"+form.value['nameType'+this.i]+'O');
 
-						this.objSimpleType.push({
-						"_attributes":{'name': "CadenaLG"+form.value['nameType'+ this.i]+'O'},
-						'xsd:restriction':{"_attributes":{
-						'base':'xsd:string'}},
-						'xsd:minLength':{"_attributes":{
-							'value':form.value['min' + this.i]
-							},
-						},
-						'xsd:maxLenght':{"_attributes":{
-							'value':form.value['max' + this.i]
-							}
-						}
-					});
-							this.namesList.push("this:CadenaLG"+form.value['nameType'+this.i]+'O');
 				}
 			}
+
+
+
+
+
+
+
+
 		}
 		else{
-
-			this.objSimpleTypeDate.push({
+      //this.objSimpleTypeDate
+			this.objSimpleType.push({
 			"_attributes":{'name': "fechaHora"},
 			'xsd:restriction':{"_attributes":{
 				'base':'xsd:dateTime'
@@ -165,7 +203,15 @@ export class TypeComponent implements OnInit {
 		}
 	});
 				this.namesList.push('fechaHora');
+
+
 		}
+
+}
+
+
+
+
 		this.typeList.emit(this.namesList[this.i+1]);
 		this.i++;
 	}
@@ -176,21 +222,17 @@ export class TypeComponent implements OnInit {
 	}
 
 	displayCompleteJson(/*cambio:json2xml*/){
-
-		this.schema={ "xsd:schema":{"_attributes":{
+//"<?xml version="1.0" encoding="UTF-8"?>",
+		this.schema={
+      "xsd:schema":{"_attributes":{
 			"xmlns:xsd":  "http://www.w3.org/2001/XMLSchema",
     		"targetNamespace": "http://www.banorte.com/ws/esb/"+this.namespace ,
     		"xmlns:tns":  "http://www.banorte.com/ws/esb/"+this.namespace},
-    		"xsd:simpleType":this.objSimpleType,
-    		'xsd:simpleTypeDate': this.objSimpleTypeDate,
-    		'xsd:simpleTypeNumber':this.objSimpleTypeNumber
+    		"xsd:simpleType":this.objSimpleType
+    		//'xsd:simpleType': this.objSimpleTypeDate,
+    		//'xsd:simpleType':this.objSimpleTypeNumber
 				}
 			};
-
-
-
-
-
 
 
 			var options = {compact: true, ignoreComment: true, spaces: 4};
@@ -204,6 +246,9 @@ export class TypeComponent implements OnInit {
 	}
 
 
+
+
+/* funcion que combierte la cadena xml en objeto binario bruto*/
   saveTextAsFile()
    {
 
@@ -225,9 +270,6 @@ export class TypeComponent implements OnInit {
    {
        document.body.removeChild(event.target);
    }
-
-
-
 
 
 

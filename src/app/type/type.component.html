@@ -20,32 +20,57 @@ de ngForm, pero dentro de la referencia local-->
 	<div  class="container table-bordered " *ngFor="let type of namesList;let i =index">
 
 		<div class="row">
-			<div class="col-sm-3 col-md-3 col-lg-4">
+
+			<div class="col-sm-1 col-md-2 col-lg-2">
 				Inserte el Valor:
 				<br>
 				<input type="text" (ngModel)="type.name" name="nameType{{i}}" />
 			</div>
 
-			<div class="col-sm-2 col-md-3 col-lg-4">
+			<div class="col-sm-1 col-md-2 col-lg-2">
 				Inserte minimo:
 				<br>
 				<input type="number"  (ngModel)="type.min" name="min{{i}}"/>
 			</div>
-			<div class="col-sm-2 col-md-2 col-lg-3">
+
+			<div class="col-sm-1 col-md-2 col-lg-2">
 				Inserte maximo:
 				<br>
 				<input type="number"  (ngModel)="type.max" name="max{{i}}"/>
 			</div>
-			<div class="col-sm-1 col-md-1 col-lg-1">
-				<div class="col-sm-6">
-					Numero: <input type="checkbox" (ngModel)='type.number'	name="number{{i}}">
-					Fecha: <input type="checkbox" (ngModel)='type.date'	name="date{{i}}"  [checked]="isDate" >
-				</div>
+<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+			<div class="btn-toolbar mb-5" role="toolbar" aria-label="Toolbar with button groups">
+
+				<div class="btn-group mr-6" role="group" aria-label="First group">
+					Numero:<input type="checkbox" (ngModel)='type.number'	name="number{{i}}">
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					Booleano:<input type="checkbox" (ngModel)='type.boolean'	name="boolean{{i}}"   [checked]="isBo" >
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          Fecha y hora:<input type="checkbox" (ngModel)='type.date'	name="date{{i}}"  [checked]="isDate" >
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          Fecha:<input type="checkbox" (ngModel)='type.fecha'	name="fecha{{i}}">
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          Hora:<input type="checkbox" (ngModel)='type.fecha'	name="fecha{{i}}">
+
+      </div>
 
 			</div>
 
+<br>
+
+
+
 		</div>
 		</div>
+
+		<br>
 
 		<div class="container">
 			<div class="row">
@@ -58,26 +83,34 @@ de ngForm, pero dentro de la referencia local-->
 	<hr>
 
 
-	<div class="container">
-		<div class="row">
 
-
-			<div class="col-sm-13 " >
-				<button class="btn btn-success " (click)='displayCompleteJson()' >Mostrar XSD SimpleType!</button>
-
-       <button class="btn btn-success" (click)='saveTextAsFile()' >Guardar Archivo</button>
-		</div>
-
-
-		</div>
-	</div>
 
 </form>
+<div class="container">
+	<div class="row">
+
+
+		<div class="col-sm-13 " >
+			<button class="btn btn-success " (click)='displayCompleteJson()' >Mostrar XSD SimpleType!</button>
+
+		 <button class="btn btn-success" (click)='saveTextAsFile()' >Guardar Archivo</button>
+	</div>
+
+
+	</div>
+</div>
+
+
+
+
+<br>
+
+
 
 	<div class="container">
 		<div class="row">
 			<textarea id="inputTextToSave" style="width:412px;height:256px" >
-
+ <?xml version="1.0" encoding="UTF-8"?>
 				 {{jsonSchema}}
 
 			 </textarea>
