@@ -2,20 +2,27 @@ export class objClass{
 
   public objSimpleType:
   [{
-    "_attributes":{'name':string},
-    'xsd:restriction':{"_attributes":{
-      'base':string}
+    "_attributes"?:{'name':any},
+    'xsd:restriction'?:{"_attributes"?:{
+      'base'?:any}
     },
-        'xsd:minLength':{"_attributes":{
-          'value':number  },
+        'xsd:minLength'?:{"_attributes"?:{
+          'value'?:number  },
           },
-        'xsd:maxLenght':{"_attributes":{
-          'value':number
+        'xsd:maxLenght'?:{"_attributes"?:{
+          'value'?:number
       }
-    }
+    },
+    'xsd:minInclusive'?:{"_attributes"?:{
+      'value'?:number  },
+      },
+    'xsd:maxInclusive'?:{"_attributes"?:{
+      'value'?:number
+  }
+}
   }];
 
-
+/*
  public objSimpleTypeDate:[{
       "_attributes":{'name':string},
       'xsd:restriction':{"_attributes":{
@@ -48,6 +55,7 @@ public    objSimpleTypeNumber:
       }
     }
   }]
+*/
 
 public objComplexType:[{
       "_attributes":{"name":string},
@@ -65,6 +73,11 @@ public objComplexType:[{
 
         }
     }];
+
+
+
+//------------------------------------------------------------------------------------------------
+
 
 
   public objReference:[{
@@ -85,6 +98,11 @@ public objComplexType:[{
     }];
 
 
+
+
+
+//-------------------------------------------------------------------------------------------------
+    //empieza  creacion de wsdl
     public  objPortFather:
             {"_attributes":{
                     'name':string},

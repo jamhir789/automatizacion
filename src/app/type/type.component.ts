@@ -6,11 +6,6 @@ import * as convert from 'xml-js';
 /* import * as jQuery from 'jquery';
 import { $ } from 'protractor';*/
 
-
-
-
-
-
 @Component({
   selector: 'app-type',
   templateUrl: './type.component.html',
@@ -25,8 +20,7 @@ export class TypeComponent implements OnInit {
 	currentType:string;
 	namesList:[string]=['--'];
 	isDisabeled:boolean=true;
-	isDate:boolean=false;
-  isBo:boolean=false;
+
 	hasValue:string;
 	@Output() typeList:EventEmitter<string> = new EventEmitter<string>();
 
@@ -47,38 +41,10 @@ export class TypeComponent implements OnInit {
     }
   }]
 
-	objSimpleTypeDate:objClass['objSimpleTypeDate']=[{
-      "_attributes":{'name':'default'},
-      'xsd:restriction':{"_attributes":{
-        'base':'default'
-      }
-    }
-
-  }]
 
 
-  objSimpleTypeBooleano:objClass['objSimpleTypeBooleano']=[{
-      "_attributes":{'name':'default'},
-      'xsd:restriction':{"_attributes":{
-        'base':'default'
-      }
-    }
 
-  }]
 
-	objSimpleTypeNumber=
-	[{
-		"_attributes":{'name':'default'},
-		'xsd:restriction':{"_attributes":{
-			'base':'default'}},
-				'xsd:minInclusive':{"_attributes":{
-					'value':0	},
-					},
-				'xsd:maxInclusive':{"_attributes":{
-					'value':0
-			}
-		}
-	}]
 
 	schema;
 	jsonSchema:string;
@@ -116,6 +82,7 @@ export class TypeComponent implements OnInit {
 
 
         if(form.value['boolean'+this.i]){
+          //this.objSimpleTypeBooleano
            this.objSimpleType.push({
             "_attributes":{'name': "Bandera"},
                 'xsd:restriction':{"_attributes":{
@@ -186,12 +153,6 @@ else{
 			}
 
 
-
-
-
-
-
-
 		}
 		else{
       //this.objSimpleTypeDate
@@ -209,9 +170,6 @@ else{
 
 }
 
-
-
-
 		this.typeList.emit(this.namesList[this.i+1]);
 		this.i++;
 	}
@@ -225,12 +183,11 @@ else{
 //"<?xml version="1.0" encoding="UTF-8"?>",
 		this.schema={
       "xsd:schema":{"_attributes":{
-			"xmlns:xsd":  "http://www.w3.org/2001/XMLSchema",
-    		"targetNamespace": "http://www.banorte.com/ws/esb/"+this.namespace ,
-    		"xmlns:tns":  "http://www.banorte.com/ws/esb/"+this.namespace},
+			"xmlns:xsd":"http://www.w3.org/2001/XMLSchema",
+    		"targetNamespace":"http://www.banorte.com/ws/esb/"+this.namespace ,
+    		"xmlns:tns":"http://www.banorte.com/ws/esb/"+this.namespace},
     		"xsd:simpleType":this.objSimpleType
-    		//'xsd:simpleType': this.objSimpleTypeDate,
-    		//'xsd:simpleType':this.objSimpleTypeNumber
+
 				}
 			};
 

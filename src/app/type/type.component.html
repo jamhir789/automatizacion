@@ -17,7 +17,7 @@ de ngForm, pero dentro de la referencia local-->
 
 	<hr>
 
-	<div  class="container table-bordered " *ngFor="let type of namesList;let i =index">
+	<div  class="container table-bordered" *ngFor="let type of namesList;let i =index" >
 
 		<div class="row">
 
@@ -46,22 +46,26 @@ de ngForm, pero dentro de la referencia local-->
 &nbsp;&nbsp;&nbsp;&nbsp;
 
 
-			<div class="btn-toolbar mb-5" role="toolbar" aria-label="Toolbar with button groups">
+		<div class="main-container" role="toolbar" aria-label="Toolbar with button groups">
 
-				<div class="btn-group mr-6" role="group" aria-label="First group">
-					Numero:<input type="checkbox" (ngModel)='type.number'	name="number{{i}}">
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					Booleano:<input type="checkbox" (ngModel)='type.boolean'	name="boolean{{i}}"   [checked]="isBo" >
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          Fecha y hora:<input type="checkbox" (ngModel)='type.date'	name="date{{i}}"  [checked]="isDate" >
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          Fecha:<input type="checkbox" (ngModel)='type.fecha'	name="fecha{{i}}">
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          Hora:<input type="checkbox" (ngModel)='type.fecha'	name="fecha{{i}}">
 
-      </div>
+					Numero: <input type="checkbox" (ngModel)='type.number'	name="number{{i}}">
+					&nbsp;&nbsp;&nbsp;
+					Booleano: <input type="checkbox" (ngModel)='type.boolean'	name="boolean{{i}}"   [checked]="isBo" >
+          &nbsp;&nbsp;&nbsp;
+          Fecha y hora: <input type="checkbox" (ngModel)='type.date'	name="date{{i}}"  [checked]="isDate" >
+          &nbsp;&nbsp;&nbsp;
 
-			</div>
+					<br>
+
+					Fecha: <input type="checkbox" (ngModel)='type.fecha'	name="fecha{{i}}">
+				 	&nbsp;&nbsp;&nbsp;&nbsp;
+		     	Hora: <input type="checkbox" (ngModel)='type.hora'	name="hora{{i}}">
+		    	&nbsp;&nbsp;&nbsp;&nbsp;
+		    	Double: <input type="checkbox" (ngModel)='type.hora'	name="hora{{i}}">
+		    	&nbsp;&nbsp;&nbsp;&nbsp;
+		</div>
+
 
 <br>
 
