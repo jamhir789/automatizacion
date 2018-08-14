@@ -339,7 +339,7 @@ else{
       var campo1=(<HTMLInputElement>document.getElementById('campo1')).value;
       var campo2=(<HTMLInputElement>document.getElementById('campo2')).value;
 
-      var final= "\\d".concat(campo1+campo2) ;
+      var final= "\\d".concat("{".concat(campo1)+",".concat(campo2)+"}");
 
 console.log(final);
 this.imprimir=final;
