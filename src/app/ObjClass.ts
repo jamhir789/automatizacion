@@ -19,6 +19,11 @@ export class objClass{
     'xsd:maxInclusive'?:{"_attributes"?:{
       'value'?:number
   }
+},
+'xsd:pattern'?:{"_attributes"?:{
+  'value'?:any },
+
+
 }
   }];
 

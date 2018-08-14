@@ -28,17 +28,9 @@ export class TypeComponent implements OnInit {
 
 	objSimpleType:objClass["objSimpleType"]=
 	 [{
-    "_attributes":{'name':'default'},
-    'xsd:restriction':{"_attributes":{
-      'base':'default'}
-    },
-        'xsd:minLength':{"_attributes":{
-          'value':0  },
-          },
-        'xsd:maxLenght':{"_attributes":{
-          'value':0
-      }
-    }
+
+
+
   }]
 
 
@@ -48,7 +40,7 @@ export class TypeComponent implements OnInit {
 
 	schema;
 	jsonSchema:string;
-
+imprimir:any;
 
   constructor(){
 
@@ -74,11 +66,152 @@ export class TypeComponent implements OnInit {
 
 	}
 
+
   createSimpleTypeList(form:NgForm){
 
+    if (!form.untouched){
 
 
-			if(!form.untouched){
+        switch(form.touched){
+
+          case form.value['boolean'+this.i] :{
+            //this.objSimpleTypeBooleano
+             this.objSimpleType.push({
+              "_attributes":{'name': "Bandera"},
+              'xsd:restriction':{"_attributes":{
+              'base':'xsd:boolean'
+                                        }
+                                           }
+                                            });
+                              this.namesList.push('this:Bandera');
+            break;
+                                              }
+
+
+          case form.value['number'+this.i]:{
+            //this.objSimpleTypeNumber
+             this.objSimpleType.push({
+             "_attributes":{'name': "NumeroDG" +form.value['nameType' + this.i]},
+             'xsd:restriction':{"_attributes":{
+             'base':'xsd:integer'}},
+             'xsd:minInclusive':{"_attributes":{
+             'value':form.value['min' + this.i]
+                                               },
+                                 },
+            'xsd:maxInclusive':{"_attributes":{
+            'value':form.value['max' + this.i]
+                                              }
+                               }
+                                    })
+            this.namesList.push("this:NumeroDG"+form.value['nameType'+this.i]);
+          break;
+                                            }
+
+
+
+         case form.value['datetime'+this.i]:{
+        //this.objSimpleTypeDate
+		  	 this.objSimpleType.push({
+			   "_attributes":{'name': "fechaHora"},
+			   'xsd:restriction':{"_attributes":{
+				'base':'xsd:dateTime'
+			                                    }
+		                        }
+	                                });
+				this.namesList.push('this:FechaHora');
+
+         break;
+	                                  	}
+
+
+        case form.value['string'+this.i]:{
+
+      if (form.value['min'+this.i]>0){
+          this.objSimpleType.push({
+						"_attributes":{'name': "CadenaLG" +form.value['nameType' + this.i]},
+						'xsd:restriction':{"_attributes":{
+						'base':'xsd:string'}},
+						'xsd:minLength':{"_attributes":{
+							'value':form.value['min' + this.i]
+							},
+						},
+						'xsd:maxLenght':{"_attributes":{
+							'value':form.value['max' + this.i]
+							}
+						}
+					})
+					this.namesList.push("this:CadenaLG"+form.value['nameType'+this.i]);
+    }
+    else{
+            this.objSimpleType.push({
+            "_attributes":{'name': "CadenaLG"+form.value['nameType'+ this.i]+'O'},
+            'xsd:restriction':{"_attributes":{
+            'base':'xsd:string'}},
+            'xsd:minLength':{"_attributes":{
+            'value':form.value['min' + this.i]
+                        },
+                      },
+                      'xsd:maxLenght':{"_attributes":{
+                        'value':form.value['max' + this.i]
+                        }
+                      }
+                    });
+                      this.namesList.push("this:CadenaLG"+form.value['nameType'+this.i]+'O');
+
+
+
+
+
+
+          break;
+				}
+
+}
+
+
+
+
+
+                  case form.value['long'+this.i]:{
+                  //this.objSimpleTypeDate
+                  this.objSimpleType.push({
+                  "_attributes":{'name': "NumeroDG" +form.value['nameType' + this.i]},
+                  'xsd:restriction':{"_attributes":{
+                  'base':'xsd:long'
+                                                   }
+                                     },
+         'xsd:pattern':{"_attributes":{
+           //'value':form.value['max' + this.i]
+ 'value': this.imprimir
+      }
+    }
+                                           });
+                  this.namesList.push("this:NumeroDG"+form.value['nameType'+this.i]);
+
+                  break;
+                                               }
+
+
+
+
+
+
+
+
+
+                                              }
+
+
+
+}
+
+                      this.typeList.emit(this.namesList[this.i+1]);
+                      this.i++;
+ }
+
+
+
+			/*if(!form.untouched){
 
 
         if(form.value['boolean'+this.i]){
@@ -172,12 +305,12 @@ else{
 
 		this.typeList.emit(this.namesList[this.i+1]);
 		this.i++;
-	}
+	}*/
 
 
 
 
-	}
+
 
 	displayCompleteJson(/*cambio:json2xml*/){
 //"<?xml version="1.0" encoding="UTF-8"?>",
@@ -201,7 +334,19 @@ else{
 
 
 	}
+   procesar() {
 
+      var campo1=(<HTMLInputElement>document.getElementById('campo1')).value;
+      var campo2=(<HTMLInputElement>document.getElementById('campo2')).value;
+
+      var final= "\\d".concat(campo1+campo2) ;
+
+console.log(final);
+this.imprimir=final;
+
+    //  document.forms.ejemplo.submit();
+
+  }
 
 
 
@@ -227,6 +372,23 @@ else{
    {
        document.body.removeChild(event.target);
    }
+
+
+
+
+
+   mostrar(num) {
+    if(num==0) {
+      document.getElementById('f1').style.display = 'block';
+      document.getElementById('f1').style.display = 'line';
+      document.getElementById('f3').style.display = 'none';
+      document.getElementById('f4').style.display = 'none';
+    }
+    else {
+      // Esto te lo dejo a tí para que te entretengas
+    }
+  }
+
 
 
 

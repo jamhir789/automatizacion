@@ -30,40 +30,49 @@ de ngForm, pero dentro de la referencia local-->
 			<div class="col-sm-1 col-md-2 col-lg-2">
 				Inserte minimo:
 				<br>
-				<input type="number"  (ngModel)="type.min" name="min{{i}}"/>
+				<input type="number"  (ngModel)="type.min" name="min{{i}}" id="campo1"/>
 			</div>
 
 			<div class="col-sm-1 col-md-2 col-lg-2">
 				Inserte maximo:
 				<br>
-				<input type="number"  (ngModel)="type.max" name="max{{i}}"/>
+				<input type="number"  (ngModel)="type.max" name="max{{i}}" id="campo2"/>
 			</div>
-<br>
+
+
 
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
 
 
 		<div class="main-container" role="toolbar" aria-label="Toolbar with button groups">
 
 
+			    Cadena: <input type="checkbox" (ngModel)='type.String'	name="string{{i}}">
+			    &nbsp;&nbsp;&nbsp;
 					Numero: <input type="checkbox" (ngModel)='type.number'	name="number{{i}}">
 					&nbsp;&nbsp;&nbsp;
-					Booleano: <input type="checkbox" (ngModel)='type.boolean'	name="boolean{{i}}"   [checked]="isBo" >
-          &nbsp;&nbsp;&nbsp;
-          Fecha y hora: <input type="checkbox" (ngModel)='type.date'	name="date{{i}}"  [checked]="isDate" >
+          Fecha y hora: <input type="checkbox" (ngModel)='type.date'	name="datetime{{i}}" >
           &nbsp;&nbsp;&nbsp;
 
 					<br>
 
-					Fecha: <input type="checkbox" (ngModel)='type.fecha'	name="fecha{{i}}">
+					Fecha: <input type="checkbox" (ngModel)='type.fecha'	name="date{{i}}">
 				 	&nbsp;&nbsp;&nbsp;&nbsp;
-		     	Hora: <input type="checkbox" (ngModel)='type.hora'	name="hora{{i}}">
+		     	Hora: <input type="checkbox" (ngModel)='type.hora'	name="time{{i}}">
 		    	&nbsp;&nbsp;&nbsp;&nbsp;
-		    	Double: <input type="checkbox" (ngModel)='type.hora'	name="hora{{i}}">
-		    	&nbsp;&nbsp;&nbsp;&nbsp;
+					Booleano: <input type="checkbox" (ngModel)='type.boolean'	name="boolean{{i}}">
+          &nbsp;&nbsp;&nbsp;&nbsp;
+
+					<br>
+
+					long: <input type="checkbox" (ngModel)='type.long'	name="long{{i}}" (change)='procesar()'>
+				 	&nbsp;&nbsp;&nbsp;&nbsp;
+					Decimal: <input type="checkbox" (ngModel)='type.decimal'	name="decimal{{i}}">
+				  &nbsp;&nbsp;&nbsp;&nbsp;
+
 		</div>
 
 
