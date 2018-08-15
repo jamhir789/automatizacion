@@ -38,7 +38,10 @@ de ngForm, pero dentro de la referencia local-->
 				<br>
 				<input type="number"  (ngModel)="type.max" name="max{{i}}" id="campo2"/>
 			</div>
-
+<br>
+<div id="content" style="display:none;" class="col-sm-1 col-md-2 col-lg-2">
+	 Inserte decimales:<input type="number"  (ngModel)="type.deci" name="deci{{i}}" id="campo3"/>
+</div>
 
 
 
@@ -70,7 +73,7 @@ de ngForm, pero dentro de la referencia local-->
 
 					long: <input type="checkbox" (ngModel)='type.long'	name="long{{i}}" (change)='procesar()'>
 				 	&nbsp;&nbsp;&nbsp;&nbsp;
-					Decimal: <input type="checkbox" (ngModel)='type.decimal'	name="decimal{{i}}">
+					Decimal: <input type="checkbox" (ngModel)='type.decimal'	name="decimal{{i}}"  id="decimal" value="1" (change)='showContent();proDeci()'>
 				  &nbsp;&nbsp;&nbsp;&nbsp;
 
 		</div>

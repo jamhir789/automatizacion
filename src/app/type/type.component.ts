@@ -41,6 +41,7 @@ export class TypeComponent implements OnInit {
 	schema;
 	jsonSchema:string;
 imprimir:any;
+decimles:any;
 
   constructor(){
 
@@ -109,7 +110,7 @@ imprimir:any;
 
 
 
-         case form.value['datetime'+this.i]:{
+        case form.value['datetime'+this.i]:{
         //this.objSimpleTypeDate
 		  	 this.objSimpleType.push({
 			   "_attributes":{'name': "fechaHora"},
@@ -122,6 +123,37 @@ imprimir:any;
 
          break;
 	                                  	}
+
+
+                                      case form.value['date'+this.i]:{
+                                     //this.objSimpleTypeDate
+                             		  	 this.objSimpleType.push({
+                             			   "_attributes":{'name': "fecha"},
+                             			   'xsd:restriction':{"_attributes":{
+                             				'base':'xsd:Date'
+                             			                                    }
+                             		                        }
+                             	                                });
+                             				this.namesList.push('this:FechaHora');
+
+                                      break;
+                             	                                  	}
+
+                        case form.value['time'+this.i]:{
+                         //this.objSimpleTypeDate
+                         this.objSimpleType.push({
+                        "_attributes":{'name': "hora"},
+                        'xsd:restriction':{"_attributes":{
+                        'base':'xsd:time'
+                                                            }
+                                                          }
+                                                        });
+                          this.namesList.push('this:FechaHora');
+
+                          break;
+                                                   }
+
+
 
 
         case form.value['string'+this.i]:{
@@ -193,6 +225,24 @@ imprimir:any;
 
 
 
+                                               case form.value['decimal'+this.i]:{
+                                               //this.objSimpleTypeDate
+                                               this.objSimpleType.push({
+                                               "_attributes":{'name': "NumeroDG" +form.value['nameType' + this.i]},
+                                               'xsd:restriction':{"_attributes":{
+                                               'base':'xsd:decimal'
+                                                                                }
+                                                                  },
+                                           'xsd:pattern':{"_attributes":{
+                                           //'value':form.value['max' + this.i]
+                                           'value': this.decimales
+                                           }
+                                           }
+                                                                        });
+                                               this.namesList.push("this:NumeroDG"+form.value['nameType'+this.i]);
+
+                                               break;
+                                                                            }
 
 
 
@@ -349,6 +399,27 @@ this.imprimir=final;
   }
 
 
+  proDeci() {
+
+     var campo1=(<HTMLInputElement>document.getElementById('campo1')).value;
+     var campo2=(<HTMLInputElement>document.getElementById('campo2')).value;
+      var campo2=(<HTMLInputElement>document.getElementById('campo3')).value;
+
+     var final= "\\d".concat("{".concat(campo1)+",".concat(campo2)+"}");
+
+console.log(final);
+this.decimales=final;
+
+   //  document.forms.ejemplo.submit();
+
+ }
+
+
+
+
+
+
+
 
 /* funcion que combierte la cadena xml en objeto binario bruto*/
   saveTextAsFile()
@@ -376,18 +447,16 @@ this.imprimir=final;
 
 
 
-
-   mostrar(num) {
-    if(num==0) {
-      document.getElementById('f1').style.display = 'block';
-      document.getElementById('f1').style.display = 'line';
-      document.getElementById('f3').style.display = 'none';
-      document.getElementById('f4').style.display = 'none';
-    }
-    else {
-      // Esto te lo dejo a tí para que te entretengas
-    }
-  }
+   showContent() {
+           var element = document.getElementById("content");
+           var check = document.getElementById("decimal");
+           if (check.checked) {
+               element.style.display='block';
+           }
+           else {
+               element.style.display='none';
+           }
+       }
 
 
 
