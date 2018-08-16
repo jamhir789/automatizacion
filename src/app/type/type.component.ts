@@ -204,24 +204,24 @@ decimales:any;
 
 
 
-                  case form.value['long'+this.i]:{
-                  //this.objSimpleTypeDate
-                  this.objSimpleType.push({
-                  "_attributes":{'name': "NumeroDG" +form.value['nameType' + this.i]},
-                  'xsd:restriction':{"_attributes":{
-                  'base':'xsd:long'
+          case form.value['long'+this.i]:{
+          //this.objSimpleTypeDate
+          this.objSimpleType.push({
+          "_attributes":{'name': "NumeroDG" +form.value['nameType' + this.i]},
+          'xsd:restriction':{"_attributes":{
+          'base':'xsd:long'
                                                    }
-                                     },
-         'xsd:pattern':{"_attributes":{
+                                 },
+       'xsd:pattern':{"_attributes":{
            //'value':form.value['max' + this.i]
            //this.imprimir
  'value': "\\d".concat("{".concat( String (form.value['min' + this.i]))+","+ String (form.value['max' + this.i]) +"}")
+
       }
     }
-                                           });
-                  this.namesList.push("this:NumeroDG"+form.value['nameType'+this.i]);
-
-                  break;
+                   });
+this.namesList.push("this:NumeroDG"+form.value['nameType'+this.i]);
+            break;
                                                }
 
 
@@ -230,8 +230,13 @@ decimales:any;
              //this.objSimpleTypeDate
 
             //this.showContent()
+            //element.style.display='block';
 
 
+       /*else{
+            element.style.display='none';
+        }
+*/
 
           this.objSimpleType.push({
           "_attributes":{'name': "NumeroDG" +form.value['nameType' + this.i]},
@@ -241,7 +246,9 @@ decimales:any;
                 },
           'xsd:pattern':{"_attributes":{
          //'value':form.value['max' + this.i]
-        'value': this.decimales
+        'value': "\\d".concat("{".concat( String (form.value['min' + this.i]))+
+        ","+ String (form.value['max' + this.i]) +"}"+ "\\"+"." +"\\d"+"{"+
+        (form.value['deci' + this.i])+"}")
          }
          }
           });
@@ -285,31 +292,6 @@ decimales:any;
 
 
 	}
-   procesar() {
-
-      var campo1=(<HTMLInputElement>document.getElementById('campo1')).value ;
-      var campo2=(<HTMLInputElement>document.getElementById('campo2')).value ;
-
-
-      var final= "\\d".concat("{".concat(campo1)+",".concat(campo2)+"}");
-console.log(final);
-
-this.imprimir=final;
-console.log("se ejecuto")
-
-    //  document.forms.ejemplo.submit();
-
-  }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -340,62 +322,19 @@ console.log("se ejecuto")
 //////////////////////////////////////////////////////
 //funcion que oculta y muestra el elemento de decimales dentro de un div
    showContent() {
-     var element = document.getElementById("content");
-     var check = document.getElementById("decimal") as HTMLInputElement;
-     if (check.checked) {
+   var element = document.getElementById("content");
+   var check = document.getElementById("decimal") as HTMLInputElement;
+   if (check.checked) {
 
-         element.style.display='block';
+       element.style.display='block';
 
-     }
-    else{
-         element.style.display='none';
-     }
+   }
+  else{
+       element.style.display='none';
+   }
 
        }
 
-//////////////////////////////////////////////////////
-       proDeci() {
 
-
-         var campo1=(<HTMLInputElement>document.getElementById('campo1')).value;
-         var campo2=(<HTMLInputElement>document.getElementById('campo2')).value;
-         var campo3=(<HTMLInputElement>document.getElementById('campo3')).value;
-
-           var final= "\\d".concat("{".concat(campo1)+",".concat(campo2)+"}"+ "\\"+"." +"\\d"+"{"+(campo3)+"}");
-           console.log(final);
-           console.log("se ejecuto decimales");
-           this.decimales=final;
-
-         }
-
-//////////////////////////
-ultima(){
-var campo1=(<HTMLInputElement>document.getElementById('campo1')).value;
-var campo2=(<HTMLInputElement>document.getElementById('campo2')).value;
-var campo3=(<HTMLInputElement>document.getElementById('campo3')).value;
-
-var element = document.getElementById("content");
-var check = document.getElementById("decimal") as HTMLInputElement;
-if (check.checked) {
-
-element.style.display='block';
-
-if(campo3 === ''){
- alert("faltan los decimales");
-return false;
-}else{
-  var final= "\\d".concat("{".concat(campo1)+",".concat(campo2)+"}"+ "\\"+"." +"\\d"+"{"+(campo3)+"}");
-  console.log(final);
-  this.decimales=final;
-}
-
-
-}
-
-else{
-     element.style.display='none';
- }
-
-}
 
 }
