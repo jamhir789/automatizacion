@@ -41,7 +41,7 @@ export class TypeComponent implements OnInit {
 	schema;
 	jsonSchema:string;
 imprimir:any;
-decimles:any;
+decimales:any;
 
   constructor(){
 
@@ -214,7 +214,8 @@ decimles:any;
                                      },
          'xsd:pattern':{"_attributes":{
            //'value':form.value['max' + this.i]
- 'value': this.imprimir
+           //this.imprimir
+ 'value': "\\d".concat("{".concat( String (form.value['min' + this.i]))+","+ String (form.value['max' + this.i]) +"}")
       }
     }
                                            });
@@ -225,28 +226,29 @@ decimles:any;
 
 
 
-                                               case form.value['decimal'+this.i]:{
-                                               //this.objSimpleTypeDate
-                                               this.objSimpleType.push({
-                                               "_attributes":{'name': "NumeroDG" +form.value['nameType' + this.i]},
-                                               'xsd:restriction':{"_attributes":{
-                                               'base':'xsd:decimal'
-                                                                                }
-                                                                  },
-                                           'xsd:pattern':{"_attributes":{
-                                           //'value':form.value['max' + this.i]
-                                           'value': this.decimales
-                                           }
-                                           }
-                                                                        });
-                                               this.namesList.push("this:NumeroDG"+form.value['nameType'+this.i]);
+              case form.value['decimal'+this.i]:{
+             //this.objSimpleTypeDate
+
+            //this.showContent()
+
+
+
+          this.objSimpleType.push({
+          "_attributes":{'name': "NumeroDG" +form.value['nameType' + this.i]},
+           'xsd:restriction':{"_attributes":{
+          'base':'xsd:decimal'
+                          }
+                },
+          'xsd:pattern':{"_attributes":{
+         //'value':form.value['max' + this.i]
+        'value': this.decimales
+         }
+         }
+          });
+         this.namesList.push("this:NumeroDG"+form.value['nameType'+this.i]);
 
                                                break;
                                                                             }
-
-
-
-
 
 
                                               }
@@ -258,107 +260,6 @@ decimles:any;
                       this.typeList.emit(this.namesList[this.i+1]);
                       this.i++;
  }
-
-
-
-			/*if(!form.untouched){
-
-
-        if(form.value['boolean'+this.i]){
-          //this.objSimpleTypeBooleano
-           this.objSimpleType.push({
-            "_attributes":{'name': "Bandera"},
-                'xsd:restriction':{"_attributes":{
-                   'base':'xsd:boolean'
-                                      }
-                                         }
-                                          });
-                            this.namesList.push('Bandera');
-
-                                 }
-else{
-
-
-			if(!form.value['date'+this.i]){
-
-				if(form.value['number'+this.i]){
-
-	         //this.objSimpleTypeNumber
-					this.objSimpleType.push({
-						"_attributes":{'name': "NumeroDG" +form.value['nameType' + this.i]},
-						'xsd:restriction':{"_attributes":{
-						'base':'xsd:integer'}},
-						'xsd:minInclusive':{"_attributes":{
-							'value':form.value['min' + this.i]
-							},
-						},
-						'xsd:maxInclusive':{"_attributes":{
-							'value':form.value['max' + this.i]
-							}
-						}
-					})
-					this.namesList.push("this:NumeroDG"+form.value['nameType'+this.i]);
-			}
-			else{
-				if(form.value['min'+this.i]>0){
-					this.objSimpleType.push({
-						"_attributes":{'name': "CadenaLG" +form.value['nameType' + this.i]},
-						'xsd:restriction':{"_attributes":{
-						'base':'xsd:string'}},
-						'xsd:minLength':{"_attributes":{
-							'value':form.value['min' + this.i]
-							},
-						},
-						'xsd:maxLenght':{"_attributes":{
-							'value':form.value['max' + this.i]
-							}
-						}
-					})
-					this.namesList.push("this:CadenaLG"+form.value['nameType'+this.i]);
-				}
-				else{
-          this.objSimpleType.push({
-          "_attributes":{'name': "CadenaLG"+form.value['nameType'+ this.i]+'O'},
-          'xsd:restriction':{"_attributes":{
-          'base':'xsd:string'}},
-          'xsd:minLength':{"_attributes":{
-            'value':form.value['min' + this.i]
-            },
-          },
-          'xsd:maxLenght':{"_attributes":{
-            'value':form.value['max' + this.i]
-            }
-          }
-        });
-          this.namesList.push("this:CadenaLG"+form.value['nameType'+this.i]+'O');
-
-				}
-			}
-
-
-		}
-		else{
-      //this.objSimpleTypeDate
-			this.objSimpleType.push({
-			"_attributes":{'name': "fechaHora"},
-			'xsd:restriction':{"_attributes":{
-				'base':'xsd:dateTime'
-			}
-		}
-	});
-				this.namesList.push('fechaHora');
-
-
-		}
-
-}
-
-		this.typeList.emit(this.namesList[this.i+1]);
-		this.i++;
-	}*/
-
-
-
 
 
 
@@ -386,33 +287,24 @@ else{
 	}
    procesar() {
 
-      var campo1=(<HTMLInputElement>document.getElementById('campo1')).value;
-      var campo2=(<HTMLInputElement>document.getElementById('campo2')).value;
+      var campo1=(<HTMLInputElement>document.getElementById('campo1')).value ;
+      var campo2=(<HTMLInputElement>document.getElementById('campo2')).value ;
+
 
       var final= "\\d".concat("{".concat(campo1)+",".concat(campo2)+"}");
-
 console.log(final);
+
 this.imprimir=final;
+console.log("se ejecuto")
 
     //  document.forms.ejemplo.submit();
 
   }
 
 
-  proDeci() {
 
-     var campo1=(<HTMLInputElement>document.getElementById('campo1')).value;
-     var campo2=(<HTMLInputElement>document.getElementById('campo2')).value;
-      var campo2=(<HTMLInputElement>document.getElementById('campo3')).value;
 
-     var final= "\\d".concat("{".concat(campo1)+",".concat(campo2)+"}");
 
-console.log(final);
-this.decimales=final;
-
-   //  document.forms.ejemplo.submit();
-
- }
 
 
 
@@ -445,22 +337,65 @@ this.decimales=final;
    }
 
 
-
-
+//////////////////////////////////////////////////////
+//funcion que oculta y muestra el elemento de decimales dentro de un div
    showContent() {
-           var element = document.getElementById("content");
-           var check = document.getElementById("decimal");
-           if (check.checked) {
-               element.style.display='block';
-           }
-           else {
-               element.style.display='none';
-           }
+     var element = document.getElementById("content");
+     var check = document.getElementById("decimal") as HTMLInputElement;
+     if (check.checked) {
+
+         element.style.display='block';
+
+     }
+    else{
+         element.style.display='none';
+     }
+
        }
 
+//////////////////////////////////////////////////////
+       proDeci() {
 
 
+         var campo1=(<HTMLInputElement>document.getElementById('campo1')).value;
+         var campo2=(<HTMLInputElement>document.getElementById('campo2')).value;
+         var campo3=(<HTMLInputElement>document.getElementById('campo3')).value;
+
+           var final= "\\d".concat("{".concat(campo1)+",".concat(campo2)+"}"+ "\\"+"." +"\\d"+"{"+(campo3)+"}");
+           console.log(final);
+           console.log("se ejecuto decimales");
+           this.decimales=final;
+
+         }
+
+//////////////////////////
+ultima(){
+var campo1=(<HTMLInputElement>document.getElementById('campo1')).value;
+var campo2=(<HTMLInputElement>document.getElementById('campo2')).value;
+var campo3=(<HTMLInputElement>document.getElementById('campo3')).value;
+
+var element = document.getElementById("content");
+var check = document.getElementById("decimal") as HTMLInputElement;
+if (check.checked) {
+
+element.style.display='block';
+
+if(campo3 === ''){
+ alert("faltan los decimales");
+return false;
+}else{
+  var final= "\\d".concat("{".concat(campo1)+",".concat(campo2)+"}"+ "\\"+"." +"\\d"+"{"+(campo3)+"}");
+  console.log(final);
+  this.decimales=final;
+}
 
 
+}
+
+else{
+     element.style.display='none';
+ }
+
+}
 
 }
