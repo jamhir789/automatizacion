@@ -402,8 +402,9 @@ ngOnChanges() {
             'wsdl:service':{"_attributes":{
                 'name':this.nameSpace},
                 'wsdl:port':{"_attributes":{
-                    'name':this.nameSpace+"SOAP",
-                    'binding':'tns:'+this.nameSpace+'SOAP'
+                  'binding':'tns:'+this.nameSpace+'SOAP',
+                    'name':this.nameSpace+"SOAP"
+
                   },
                     'soap:address':{"_attributes":{
                       'location':'http://www.banorte.com.ws.esb.'+this.nameSpace+'/V1.0/'}

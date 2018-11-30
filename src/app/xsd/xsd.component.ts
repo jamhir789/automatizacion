@@ -21,40 +21,18 @@ export class XsdComponent implements OnInit,OnChanges {
   @Output() messageName:EventEmitter<string> = new EventEmitter<string>();
 
 
-  objComplexType:objClass['objComplexType']= [{
-    "_attributes":{"name":'default'},
-        "xsd:sequence":{
-          "xsd:element":[{"_attributes":{
-      "maxOccurs":0,
-      "minOccurs":0,
-      "name":'default',
-      "type":'default',
-    },
-      "xsd:annotation":{
-        "xsd:annotation":{"xsd:documentation":'default'},
-      }
-    }]
+  objComplexType:objClass["objComplexType"]= [{
 
-        }
     }];
 
 
     objReference:objClass['objReference']=
    [{
-      "_attributes":
-      {'name':'default',
-      'type':'string'}
+
     }];
 
-   objElement :objClass['objElement']=[{"_attributes":{
-      "maxOccurs":0,
-      "minOccurs":0,
-      "name":'default',
-      "type":'default',
-    },
-      "xsd:annotation":{
-        "xsd:annotation":{"xsd:documentation":'default'},
-      }
+   objElement :objClass['objElement']=[{
+
     }];
 
 
@@ -83,7 +61,7 @@ export class XsdComponent implements OnInit,OnChanges {
     this.objReference.push({
       "_attributes":
       {'name':this.serviceName+"In",
-      'type':this.serviceName+"Type"}
+      'type':"this:".concat (this.serviceName)+"Type"}
     })
 
     this.i=0;
@@ -135,9 +113,10 @@ export class XsdComponent implements OnInit,OnChanges {
      },
        "xsd:include":{"_attributes":{"schemeLocation":"--Liga Pendiente--"}
      },
-       "xsd:complexType":this.objComplexType
+       "xsd:complexType":this.objComplexType,
+         "xsd:element":this.objReference
      },
-     "xsd:element":this.objReference
+
 
    };
 
@@ -154,9 +133,9 @@ export class XsdComponent implements OnInit,OnChanges {
         if(this.objElement){
 
           this.objComplexType.push({
-            "_attributes":{"name":this.serviceName+'InType'},
+            "_attributes":{"name":this.serviceName+'Type'},
             "xsd:sequence":{
-              "xsd:element":this.objElement
+              "xsd:element":this.objElement   ///quitar esta linea agregada
             }
           })
 

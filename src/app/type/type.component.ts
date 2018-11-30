@@ -269,10 +269,7 @@ export class TypeComponent implements OnInit {
         }
 
 
-        default: {
-        alert("no has seleccionado ninguna opcion");
-        break;
-     }
+
 
 
       }

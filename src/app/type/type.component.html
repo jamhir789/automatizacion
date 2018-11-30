@@ -1,141 +1,95 @@
 <div class="container">
 	<div class="row">
-			<div class="col-sm-9">
-					Inserte el NameSpace:	<input type="text" #inputNamespace  (change)="inputNameSpaceEmpty(inputNamespace)"/>
-			</div>
-			<div class="col-sm-3">
-				<button class="btn btn-info" (click)="getCurrentNamespace(inputNamespace)" [disabled]='isDisabeled' >Insertar nameSpace!</button>
-
+		<div class="col-sm-9" class="contenedor">
+	Inserte el NameSpace: <input type="text" class="texto"  #inputNamespace (change)="inputNameSpaceEmpty(inputNamespace)" />
 		</div>
+
+		<div class="col-sm-7 col-md-4 col-lg-4">
+			<button class="btn btn-info" (click)="getCurrentNamespace(inputNamespace)" [disabled]='isDisabeled'>Insertar nameSpace!</button>
+		</div>
+
 	</div>
 </div>
-
 <hr>
 <!-- para sacar el "obj de js" que esta dentro del form, se tiene que usar la directiva
 de ngForm, pero dentro de la referencia local-->
-<form class="form-group" (ngSubmit)="createSimpleTypeList(f)" #f="ngForm" >
-
+<form class="form-group" (ngSubmit)="createSimpleTypeList(f)" #f="ngForm">
 	<hr>
-
-	<div  class="container table-bordered" *ngFor="let type of namesList;let i =index" >
-
+	<div class="container table-bordered" *ngFor="let type of namesList;let i =index">
 		<div class="row">
-
 			<div class="col-sm-1 col-md-2 col-lg-2">
 				Inserte el Valor:
 				<br>
 				<input type="text" (ngModel)="type.name" name="nameType{{i}}" />
 			</div>
-
 			<div class="col-sm-1 col-md-2 col-lg-2">
 				Inserte minimo:
 				<br>
-				<input type="number"  (ngModel)="type.min" name="min{{i}}" id="campo1"/>
+				<input type="number" (ngModel)="type.min" name="min{{i}}" id="campo1" />
 			</div>
 
 			<div class="col-sm-1 col-md-2 col-lg-2">
 				Inserte maximo:
 				<br>
-				<input type="number"  (ngModel)="type.max" name="max{{i}}" id="campo2"/>
+				<input type="number" (ngModel)="type.max" name="max{{i}}" id="campo2" pattern="{*}"/>
 			</div>
-<br>
-<!--style="display:none;"-->
-<div id="content"  class="col-sm-1 col-md-2 col-lg-2">
-	 Inserte decimales:<input type="number"  (ngModel)="type.deci" name="deci{{i}}" id="campo3"/>
-</div>
-
-
-
-&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-
-
-		<div class="main-container" role="toolbar" aria-label="Toolbar with button groups">
-
-
-			    Cadena: <input type="checkbox" (ngModel)='type.String'	name="string{{i}}">
-			    &nbsp;&nbsp;&nbsp;
-					Numero: <input type="checkbox" (ngModel)='type.number'	name="number{{i}}">
-					&nbsp;&nbsp;&nbsp;
-          Fecha y hora: <input type="checkbox" (ngModel)='type.date'	name="datetime{{i}}" >
-          &nbsp;&nbsp;&nbsp;
-
-					<br>
-
-					Fecha: <input type="checkbox" (ngModel)='type.fecha'	name="date{{i}}">
-				 	&nbsp;&nbsp;&nbsp;&nbsp;
-		     	Hora: <input type="checkbox" (ngModel)='type.hora'	name="time{{i}}">
-		    	&nbsp;&nbsp;&nbsp;&nbsp;
-					Booleano: <input type="checkbox" (ngModel)='type.boolean'	name="boolean{{i}}">
-          &nbsp;&nbsp;&nbsp;&nbsp;
-
-					<br>
-
-					long: <input type="checkbox" (ngModel)='type.long'	name="long{{i}}" > <!-- (change)='procesar()' -->
-				 	&nbsp;&nbsp;&nbsp;&nbsp;
-					Decimal: <input type="checkbox" (ngModel)='type.decimal'	name="decimal{{i}}"  id="decimal" value="1" (change)='proDeci()'>
-				  &nbsp;&nbsp;&nbsp;&nbsp;
-
-		</div>
-<br>
-
-<br>
-
-
-
-		</div>
-		</div>
-
-		<br>
-
-		<div class="container">
-			<div class="row">
-		<div class="col-sm-13" >
-			<button class="btn btn-warning flex "> Agregar campo</button>
-		</div>
+			<br>
+			<!--style="display:none;"-->
+			<div id="content" class="col-sm-1 col-md-2 col-lg-2" *ngIf="register.checked">
+				Inserte decimales:<input type="number" (ngModel)="type.deci" name="deci{{i}}" id="campo3" />
 			</div>
-				</div>
-
-	<hr>
-
-
-
-
-</form>
-<div class="container">
-	<div class="row">
-
-
-		<div class="col-sm-13 " >
-			<button class="btn btn-success " (click)='displayCompleteJson()' >Mostrar XSD SimpleType!</button>
-
-		 <button class="btn btn-success" (click)='saveTextAsFile()' >Guardar Archivo</button>
-	</div>
-
-
-	</div>
-</div>
-
-
-
-
+			&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+			<div class="main-container" role="toolbar" aria-label="Toolbar with button groups">
+ Cadena: <input type="checkbox" (ngModel)='type.String' name="string{{i}}"> &nbsp;&nbsp;&nbsp;
+ Numero: <input type="checkbox" (ngModel)='type.number' name="number{{i}}"> &nbsp;&nbsp;&nbsp;
+ Fecha y hora: <input type="checkbox" (ngModel)='type.date' name="datetime{{i}}">&nbsp;&nbsp;&nbsp;
 <br>
-
-
-
+Fecha: <input type="checkbox" (ngModel)='type.fecha' name="date{{i}}"> &nbsp;&nbsp;&nbsp;&nbsp;
+Hora: <input type="checkbox" (ngModel)='type.hora' name="time{{i}}"> &nbsp;&nbsp;&nbsp;&nbsp;
+Booleano: <input type="checkbox" (ngModel)='type.boolean' name="boolean{{i}}"> &nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+long: <input type="checkbox" (ngModel)='type.long' name="long{{i}}"> &nbsp;&nbsp;&nbsp;&nbsp; Decimal: <input type="checkbox" (ngModel)='type.decimal' name="decimal{{i}}" id="decimal" value="1" (change)="register" #register> &nbsp;&nbsp;&nbsp;&nbsp;
+			</div>
+			<br>
+			<br>
+		</div>
+	</div>
+	<br>
 	<div class="container">
 		<div class="row">
-			<textarea id="inputTextToSave" style="width:412px;height:256px" >
+			<div class="col-sm-13">
+				<button class="btn btn-warning flex "> Agregar campo</button>
+			</div>
+		</div>
+	</div>
+	<hr>
+</form>
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-13 ">
+			<button class="btn btn-success " (click)='displayCompleteJson()'>Mostrar XSD SimpleType!</button>
+
+			<button class="btn btn-success" (click)='saveTextAsFile()'>Guardar Archivo</button>
+		</div>
+	</div>
+</div>
+<br>
+
+
+<div class="container">
+	<div class="row">
+		<textarea id="inputTextToSave" style="width:412px;height:256px">
  <?xml version="1.0" encoding="UTF-8"?>
 				 {{jsonSchema}}
 
 			 </textarea>
 
-		</div>
 	</div>
+</div>
 
-	<br>
-	<br>
-	<hr>
-	<br>
+<br>
+<br>
+<hr>
+<br>

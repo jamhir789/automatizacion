@@ -15,7 +15,7 @@
 		</div>
 		<div class="col-sm-3">
 
-			<button class="btn btn-primary" (click)="commitElements()">Agregar Elementos </button>
+			<button class="btn btn-primary" (click)="commitElements()">Terminar operacion </button>
 		</div>
 		<div class="col-sm-3">
 			Esta insertando dentro de :
@@ -31,9 +31,7 @@ de ngForm, pero dentro de la referencia local-->
 	<div class="container"  >
 		<div class="row">
 
-			<div class="col-sm-6" >
-				<button class="btn btn-warning flex"  >Construir Json!</button>
-			</div>
+
 
 		</div>
 	</div>
@@ -72,11 +70,18 @@ de ngForm, pero dentro de la referencia local-->
 				<div class="col-sm-6">Inserte la descripcion del parametro:</div>
 				<div class="col-sm-6">
 
-					<textarea rows="4" cols="50" type="text"  (ngModel)="xsd.documentation" name="documentation{{i}}" ></textarea>
+					<textarea rows="4" cols="50" type="text" style="width:342px;height:56px" (ngModel)="xsd.documentation" name="documentation{{i}}" ></textarea>
 				</div>
 			</div>
 		<br>
 	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-13">
+		<button class="btn btn-warning flex"> Agregar elemento</button>
+	</div>
+</div>
+</div>
 </form>
 <hr>
 
